@@ -35,3 +35,5 @@
 !*.*
 !*/
 Info.plist
+.vs/
+out/
