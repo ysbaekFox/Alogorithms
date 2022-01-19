@@ -2,30 +2,39 @@
 #include <string.h>
 #include <algorithm>
 
+int N = 0;
+
 int forest[501][501];
 int memoization[501][501];
 
-int dfs(int x, int y, int prevTree, int moveCount)
-{
-	if ((1 > x) || (500 < x) || (1 > y) || (500 < y))
-	{
-		return moveCount - 1;
-	}
+int dx[4] = { -1, 1, 0, 0};
+int dy[4] = { 0, 0, -1, 1};
 
-    if (prevTree >= forest[x][y])
+int dfs(int x, int y)
+{
+	if (0 < memoization[x][y])
+		return memoization[x][y];
+
+    memoization[x][y] = 1;
+    for (int i = 0; i< 4 ;i++)
     {
-        return moveCount - 1;
+        int nx = x + dx[i];
+        int ny = y + dy[i];
+
+        if ((1 <= nx) && (N >= nx) && (1 <= ny) && (N >= ny))
+        {
+            if (forest[x][y] < forest[nx][ny])
+            {
+                memoization[x][y] = std::max(memoization[x][y], dfs(nx, ny) + 1);
+            }
+        }
     }
 
-    return std::max({  dfs(x + 1, y, forest[x][y], moveCount + 1),
-                       dfs(x - 1, y, forest[x][y], moveCount + 1),
-                       dfs(x, y + 1, forest[x][y], moveCount + 1),
-                       dfs(x, y - 1, forest[x][y], moveCount + 1) });
+    return memoization[x][y];
 }
 
 int main()
 {
-	int N = 0;
     scanf("%d\n", &N);
 
     for (int i = 1; i <= N; i++)
@@ -36,14 +45,12 @@ int main()
         }
     }
     
-    int maxValue = 1;
+    int maxValue = 0;
 	for (int i = 1; i <= N; i++)
 	{
 		for (int j = 1; j <= N; j++)
         {
-            int result = dfs(i, j, 0, 1);
-            memoization[i][j] = result;
-            maxValue = std::max(maxValue, result);
+            maxValue = std::max(maxValue, dfs(i, j));
         }
     }
 
