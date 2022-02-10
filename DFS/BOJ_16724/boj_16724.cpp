@@ -1,40 +1,34 @@
 #include <stdio.h>
 
-bool isVisited = false;
-char zone[1001][1001];
-bool visited[1001][1001];
+int parent[1000001];
+char field[1001][1001];
 
-void dfs(int i, int j)
+int find(int x)
 {
-	if (visited[i][j])
+	if (parent[x] == x)
 	{
-		isVisited = true;
-		return;
+		return x;
 	}
 
-	visited[i][j] = true;
+	return parent[x] = find(parent[x]);
+}
 
-	switch (zone[i][j])
-	{
-	case 'U':
-		dfs(i - 1, j);
-		break;
-	case 'D':
-		dfs(i + 1, j);
-		break;
-	case 'L':
-		dfs(i, j - 1);
-		break;
-	case 'R':
-		dfs(i, j + 1);
-		break;
-	}
+void _union(int x, int y)
+{
+	x = find(x);
+	y = find(y);
+	parent[y] = x;
 }
 
 int main()
 {
 	int N, M;
 	scanf("%d %d ", &N, &M);
+
+	for (int i = 0; i < N * M; i++)
+	{
+		parent[i] = i;
+	}
 
 	for (int i = 0; i < N; i++)
 	{
@@ -48,29 +42,47 @@ int main()
 				break;
 			}
 
-			zone[i][j] = direction;
+			field[i][j] = direction;
 		}
 	}
 
-	int count = 0;
-	for (int i = 0; i < N; i++)
+	for (int i = 0; i < N * M; i++)
 	{
-		for (int j = 0; j < M; j++)
+		int y = i / M;
+		int x = i % M;
+
+		int Idx = (y * M) + x;
+		int nextIdx = 0;
+
+		switch (field[y][x])
 		{
-			if (false == visited[i][j])
-			{
-				dfs(i, j);
+		case 'U':
+			nextIdx = ((y - 1) * M) + x;
+			break;
+		case 'D':
+			nextIdx = ((y + 1) * M) + x;
+			break;
+		case 'L':
+			nextIdx = (y * M) + x - 1;
+			break;
+		case 'R':
+			nextIdx = (y * M) + x + 1;
+			break;
+		}
 
-				if (true == isVisited)
-				{
-					count++;
-				}
-			}
+		_union(nextIdx, Idx);
+	}
 
-			isVisited = false;
+	int count = 0;
+	for (int i = 0; i < N * M; i++)
+	{
+		if (parent[i] == i)
+		{
+			count++;
 		}
 	}
 
 	printf("%d", count);
+	
 	return 0;
 }
