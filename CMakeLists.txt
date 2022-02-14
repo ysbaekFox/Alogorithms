@@ -9,7 +9,8 @@ project ("Alogorithms")
 #add_executable( exec DFS/BOJ_2644/boj_2644.cpp )
 
 # BFS
-add_executable( exec BFS/BOJ_1260/boj_1260.cpp )
+#add_executable( exec BFS/BOJ_1260/boj_1260.cpp )
+add_executable( exec BFS/BOJ_2178/boj_2178.cpp )
 
 # Union Find
 #add_executable( exec UnionFind/BOJ_16724/boj_16724.cpp )
