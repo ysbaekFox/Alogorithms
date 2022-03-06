@@ -17,7 +17,7 @@ int triedFish = 0;
 std::pair<int, int> sharkPos;
 std::vector<std::pair<int, int>> fishPosList;
 
-#define INF 2000000000;
+#define INF 200000000
 
 int totalTime = 0;
 
@@ -35,61 +35,20 @@ void arrayInit()
 
 void BFS()
 {
-	arrayInit();
-
 	while (true)
 	{
-		int minDist = INF;
-		std::pair<int, int> target{-1,-1};
-		for (std::pair<int, int> fish : fishPosList)
-		{
-			if (sharkSize > sea[fish.first][fish.second])
-			{
-				int currDist = ( abs(fish.first - sharkPos.first)
-							     + abs(fish.second - sharkPos.second) );
-
-				if (minDist > currDist)
-				{
-					target = fish;
-					minDist = currDist;
-				}
-			}
-		}
-
-		if (target.first == -1)
-		{
-			break;
-		}
-
-		fishPosList.erase(std::find(fishPosList.begin(), fishPosList.end(), target));
+		arrayInit();
 
 		std::queue<std::pair<int, int>> queue;
-		queue.push({ sharkPos.first, sharkPos.second });
-		visited[sharkPos.first][sharkPos.second] = true;
+		queue.push(std::make_pair(sharkPos.first, sharkPos.second));
+
 		dist[sharkPos.first][sharkPos.second] = 0;
+		visited[sharkPos.first][sharkPos.second] = true;
 
 		while (!queue.empty())
 		{
 			std::pair<int, int> curr = queue.front();
 			queue.pop();
-
-			if ( ( target.first == curr.first ) &&
-				 ( target.second == curr.second) )
-			{
-				sea[sharkPos.first][sharkPos.second] = 0;
-				sharkPos.first = target.first;
-				sharkPos.second = target.second;
-				totalTime += dist[target.first][target.second];
-				arrayInit();
-				triedFish++;
-				if (triedFish == sharkSize)
-				{
-					triedFish = 0;
-					sharkSize++;
-				}
-				sea[sharkPos.first][sharkPos.second] = 9;
-				break;
-			}
 
 			for (int i = 0; i < 4; i++)
 			{
@@ -100,14 +59,52 @@ void BFS()
 					(0 <= ny) &&
 					(nx < N) &&
 					(ny < N) &&
-					(false == visited[ny][nx]) &&
 					(sharkSize >= sea[ny][nx]))
 				{
-					visited[ny][nx] = true;
-					queue.push(std::make_pair(ny, nx));
-					dist[ny][nx] = std::min(dist[ny][nx], dist[curr.first][curr.second] + 1);
+					if (false == visited[ny][nx])
+					{
+						visited[ny][nx] = true;
+						queue.push(std::make_pair(ny, nx));
+						dist[ny][nx] = std::min(dist[ny][nx], dist[curr.first][curr.second] + 1);
+					}
 				}
 			}
+		}
+
+		int minDist = INF;
+		std::pair<int, int> target{ -1,-1 };
+		for (int y = 0; y < N; y++)
+		{
+			for (int x = 0; x < N; x++)
+			{
+				if ( ( minDist > dist[y][x] ) &&
+					 ( 0 < sea[y][x] ) &&
+					 ( sharkSize > sea[y][x] ) 
+					)
+				{
+					minDist = dist[y][x];
+					target = std::make_pair(y, x);
+				}
+			}
+		}
+
+		if ( ( target.first == -1 ) &&
+			 ( target.second == -1 ) )
+		{
+			break;
+		}
+
+		fishPosList.erase(std::find(fishPosList.begin(), fishPosList.end(), target));
+
+		sea[target.first][target.second] = 9;
+		sea[sharkPos.first][sharkPos.second] = 0;
+		totalTime += dist[target.first][target.second];
+		sharkPos = target;
+		triedFish++;
+		if (triedFish == sharkSize)
+		{
+			triedFish = 0;
+			sharkSize++;
 		}
 	}
 }
