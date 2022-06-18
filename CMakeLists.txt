@@ -28,7 +28,9 @@ project ("Alogorithms")
 #add_executable( exec BFS/boj_11725.cpp )
 #add_executable( exec BFS/boj_16236.cpp )
 #add_executable( exec BFS/boj_13460.cpp )
-add_executable( exec BFS/boj_1707.cpp )
+
+# Floyd-Warshall
+add_executable( exec "Floyd-Warshall/boj_1707.cpp" )
 
 # Union Find
 #add_executable( exec UnionFind/boj_16724.cpp )
