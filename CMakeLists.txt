@@ -29,7 +29,8 @@ project ("Alogorithms")
 #add_executable( exec BFS/boj_16236.cpp )
 #add_executable( exec BFS/boj_13460.cpp )
 #add_executable( exec BFS/boj_1707.cpp )
-add_executable( exec BFS/boj_16234.cpp )
+#add_executable( exec BFS/boj_16234.cpp )
+add_executable( exec BFS/boj_3055.cpp )
 
 # Floyd-Warshall
 #add_executable( exec Floyd-Warshall/boj_1389.cpp)
