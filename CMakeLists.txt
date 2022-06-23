@@ -2,6 +2,8 @@
 
 project ("Alogorithms")
 
+set(CMAKE_CXX_STANDARD 17)
+
 # DFS
 #add_executable( exec DFS/boj_1167.cpp )
 #add_executable( exec DFS/boj_1937.cpp )
@@ -30,7 +32,10 @@ project ("Alogorithms")
 #add_executable( exec BFS/boj_13460.cpp )
 #add_executable( exec BFS/boj_1707.cpp )
 #add_executable( exec BFS/boj_16234.cpp )
-add_executable( exec BFS/boj_3055.cpp )
+#add_executable( exec BFS/boj_3055.cpp )
+
+# Dijkstra
+add_executable( exec Dijkstra/boj_13549.cpp )
 
 # Floyd-Warshall
 #add_executable( exec Floyd-Warshall/boj_1389.cpp)
