@@ -39,7 +39,12 @@ set(CMAKE_CXX_STANDARD 17)
 #add_executable( exec Dijkstra/boj_1504.cpp )
 #add_executable( exec Dijkstra/boj_18352.cpp )
 #add_executable( exec Dijkstra/boj_2665.cpp )
-add_executable( exec Dijkstra/boj_14938.cpp )
+#add_executable( exec Dijkstra/boj_14938.cpp )
+
+# Dynamic Programming
+#add_executable( exec DP/boj_15988.cpp )
+add_executable( exec DP/boj_12865.cpp )
+
 
 # Floyd-Warshall
 #add_executable( exec Floyd-Warshall/boj_1389.cpp)
