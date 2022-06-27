@@ -22,14 +22,14 @@ void checkAvailable(int i, int w)
 int main()
 {
 	scanf("%d", &N);
-	for (int i = 1; i <= N; i++)
+	for (int i = 0; i < N; i++)
 	{
 		int n;
 		scanf("%d", &n);
 		weight[i] = n;
 	}
 
-	checkAvailable(0, 1);
+	checkAvailable(0, 0);
 
 	scanf("%d", &M);
 	for (int i = 0; i < M; i++)
@@ -39,10 +39,12 @@ int main()
 
 		if (dp[N][m])
 		{
-
+			std::cout << "Y ";
 		}
-
-		//dp[N][m] ? std::cout << "Y " : std::cout << "N ";
+		else
+		{
+			std::cout << "N ";
+		}
 	}
 
 	return 0;
