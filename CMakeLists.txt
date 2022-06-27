@@ -43,7 +43,8 @@ set(CMAKE_CXX_STANDARD 17)
 
 # Dynamic Programming
 #add_executable( exec DP/boj_15988.cpp )
-add_executable( exec DP/boj_12865.cpp )
+#add_executable( exec DP/boj_12865.cpp )
+add_executable( exec DP/boj_2629.cpp )
 
 
 # Floyd-Warshall
