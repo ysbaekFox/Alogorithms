@@ -33,6 +33,8 @@ set(CMAKE_CXX_STANDARD 17)
 #add_executable( exec BFS/boj_1707.cpp )
 #add_executable( exec BFS/boj_16234.cpp )
 #add_executable( exec BFS/boj_3055.cpp )
+#add_executable( exec BFS/boj_5014.cpp )
+add_executable( exec BFS/boj_23288.cpp )
 
 # Dijkstra
 #add_executable( exec Dijkstra/boj_13549.cpp )
@@ -40,13 +42,17 @@ set(CMAKE_CXX_STANDARD 17)
 #add_executable( exec Dijkstra/boj_18352.cpp )
 #add_executable( exec Dijkstra/boj_2665.cpp )
 #add_executable( exec Dijkstra/boj_14938.cpp )
+#add_executable( exec Dijkstra/boj_11909.cpp )
 
 # Dynamic Programming
 #add_executable( exec DP/boj_15988.cpp )
 #add_executable( exec DP/boj_12865.cpp )
 #add_executable( exec DP/boj_2629.cpp )
-add_executable( exec DP/boj_2169.cpp )
-
+#add_executable( exec DP/boj_2169.cpp )
+#add_executable( exec DP/boj_9655.cpp )
+#add_executable( exec DP/boj_2096.cpp )
+#add_executable( exec DP/boj_1516.cpp )
+#add_executable( exec DP/boj_1495.cpp )
 
 # Floyd-Warshall
 #add_executable( exec Floyd-Warshall/boj_1389.cpp)
