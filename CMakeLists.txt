@@ -36,7 +36,9 @@ set(CMAKE_CXX_STANDARD 17)
 #add_executable( exec BFS/boj_5014.cpp )
 #add_executable( exec BFS/boj_23288.cpp )
 #add_executable( exec BFS/boj_1941.cpp )
-add_executable( exec BFS/boj_17471.cpp )
+#add_executable( exec BFS/boj_17471.cpp )
+#add_executable( exec BFS/boj_11060.cpp )
+
 
 # Dijkstra
 #add_executable( exec Dijkstra/boj_13549.cpp )
@@ -57,6 +59,8 @@ add_executable( exec BFS/boj_17471.cpp )
 #add_executable( exec DP/boj_1495.cpp )
 #add_executable( exec DP/boj_2775.cpp )
 #add_executable( exec DP/boj_17404.cpp )
+#add_executable( exec DP/boj_1423.cpp )
+add_executable( exec DP/boj_14501.cpp )
 
 # Floyd-Warshall
 #add_executable( exec Floyd-Warshall/boj_1389.cpp)
